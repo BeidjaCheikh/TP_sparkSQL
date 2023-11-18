@@ -48,7 +48,7 @@ Spark SQL is a Spark module for structured data processing. Unlike the basic Spa
 Nous souhaitons développer une application Spark pour une entreprise industrielle qui traite les incidents de chaque service.
 Les incidents sont stockés dans un fichier CSV.
 
-![image](https://github.com/el-moudni-hicham/bigdata-spark-sql/assets/85403056/a0119451-b944-4662-a07a-3ce56b89fa6e)
+![image](https://github.com/BeidjaCheikh/TP_sparkSQL/blob/master/images/img1.png)
 
 ```
 SparkSession ss = SparkSession.builder().appName("TP SQPARKS SQL").master("local[*]").getOrCreate();
@@ -65,7 +65,7 @@ Dataset<Row> df1 = ss.read().option("header", true).option("inferSchema", true).
      incidentsByServiceDF.show();
 ```
 
-![image](https://github.com/el-moudni-hicham/bigdata-spark-sql/assets/85403056/34972b5f-83c0-4720-8186-60733427a6cb)
+![image](https://github.com/BeidjaCheikh/TP_sparkSQL/blob/master/images/img2.png)
 
 * Affichez les deux années avec le plus d'incidents.
 
