@@ -124,8 +124,43 @@ SparkSession ss = SparkSession.builder().appName("TP SPARK SQL").master("local[*
                 .load();
 ```
 *  // Afficher le nombre de consultations par jour :
+
 ```
    df1.groupBy(col("DATE_CONSULTATION").alias("DATE de CONSULTATION")).count().show();
 ```
-![image](https://github.com/el-moudni-hicham/bigdata-spark-sql/assets/85403056/a20eaf6d-cdaf-4864-a2e9-8122f7724aab)
+```
+show()
+```
+![image](https://github.com/BeidjaCheikh/TP_sparkSQL/blob/master/images/img7.png)
 
+* // Afficher le nombre de consultations par médecin :
+```
+Dataset<Row> dfConsultations = df1.groupBy(col("id_medecin")).count();
+
+        // Renommer la colonne "id" de df2 pour correspondre à dfConsultations
+        Dataset<Row> dfMedecins = df2.withColumnRenamed("id", "id_medecin");
+
+        // Jointure des données des médecins avec le nombre de consultations
+        Dataset<Row> joinedDF = dfMedecins
+                .join(dfConsultations, dfMedecins.col("id_medecin").equalTo(dfConsultations.col("id_medecin")), "inner")
+                .select(dfMedecins.col("nom"), dfMedecins.col("prenom"), dfConsultations.col("count").alias("NOMBRE_DE_CONSULTATION"))
+                .orderBy(col("NOMBRE_DE_CONSULTATION").desc());
+
+        // Afficher le résultat
+        joinedDF.show();
+```
+```
+show()
+```
+![image](https://github.com/BeidjaCheikh/TP_sparkSQL/blob/master/images/img8.png)
+
+* // Afficher le nombre de patients assistés par chaque médecin :
+```
+Dataset<Row> dfPatientsParMedecin = df1.groupBy(col("id_medecin"))
+.agg(count("id_patient").alias("NOMBRE_DE_PATIENTS"));
+dfPatientsParMedecin.show();
+```
+```
+show()
+```
+![image](https://github.com/BeidjaCheikh/TP_sparkSQL/blob/master/images/img9.png)
