@@ -13,7 +13,7 @@ public class App3SQL {
         // Créer une session Spark
         SparkSession ss = SparkSession.builder().appName("TP SPARK SQL").master("local[*]").getOrCreate();
 
-        // Exécuter la première requête : Afficher le nombre de consultations par jour
+        //Afficher le nombre de consultations par jour
         System.out.println("Nombre de consultations par jour :");
 
         // Chargement des données de consultations

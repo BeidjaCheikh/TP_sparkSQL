@@ -2,16 +2,13 @@
 
 
 ```
-This project includes a brief but informative and simple explanation of Apache Spark and
-Spark SQL terms with java implementation. There are few structured examples to clear
-the concept and terms in Apache Spark and Spark SQL altogether.
+TP: Spark SQL
 ```
 
 ## Table of Contents
 1. [Overview](#overview)
 2. [Dependencies](#dependencies)
 3. [Applications](#applications)
-    * [Products SQL](#products-sql)
     * [Incidents SQL](#incidents-sql)
     * [Hopital Database](#hopital-database)
 
@@ -20,8 +17,7 @@ the concept and terms in Apache Spark and Spark SQL altogether.
 
 ### Spark SQL
 
-Spark SQL is a Spark module for structured data processing. Unlike the basic Spark RDD API, the interfaces provided by Spark SQL provide Spark with more information about the structure of both the data and the computation being performed. Internally, Spark SQL uses this extra information to perform extra optimizations.
-
+Spark SQL est un module Spark pour le traitement de données structurées. Contrairement à l'API Spark RDD de base, les interfaces fournies par Spark SQL fournissent à Spark plus d'informations sur la structure des données et sur le calcul effectué. En interne, Spark SQL utilise ces informations supplémentaires pour effectuer des optimisations supplémentaires.
 ## Dependencies
 
 * Spark SQL
@@ -98,53 +94,38 @@ Créez une base de données MySQL nommée DB_HOPITAL, qui contient trois tables
 
 ![image](https://github.com/BeidjaCheikh/TP_sparkSQL/blob/master/images/img6.png)
 
-* Get access to data in database :
+* -// Créer une session Spark:
 
-```java
-        SparkSession ss = SparkSession.builder().appName("MySQL").master("local[*]").getOrCreate();
+```
+SparkSession ss = SparkSession.builder().appName("TP SPARK SQL").master("local[*]").getOrCreate();
 
-        Map<String, String> option = new HashMap<>();
-        option.put("driver", "com.mysql.jdbc.Driver");
-        option.put("url", "jdbc:mysql://localhost:3306/db_hopital_spark");
-        option.put("user","root");
-        option.put("password","");
+```
 
-        Dataset<Row> df1 = ss.read().format("jdbc")
-                .options(option)
-                //.option("table","table_name")
-                .option("query","select * from consultations")
+* // Chargement des données de consultations :
+
+```
+       Dataset<Row> df1 = ss.read().format("jdbc")
+                .option("url", "jdbc:mysql://localhost:3306/db_hopital")
+                .option("driver", "com.mysql.jdbc.Driver")
+                .option("user", "root")
+                .option("password", "")
+                .option("query", "select * from consultations")
                 .load();
+```
+* // Chargement des données des médecins :
+```
+ // Chargement des données des médecins
         Dataset<Row> df2 = ss.read().format("jdbc")
-                .options(option)
-                .option("query","select * from medecins")
+                .option("url", "jdbc:mysql://localhost:3306/db_hopital")
+                .option("query", "select * from medecins")
+                .option("user", "root")
+                .option("password", "")
+
                 .load();
 ```
-
-* Display the number of consultations per day :
-
-```java
-df1.groupBy(col("DATE_CONSULTATION").alias("day")).count().show();
+*  // Afficher le nombre de consultations par jour :
 ```
-
-![image](https://github.com/el-moudni-hicham/bigdata-spark-sql/assets/85403056/9dfd46f1-5606-46d7-91d8-b24a300b631c)
-
-
-* Display the number of consultations per doctor. The display format is as follows:
-
-`NAME | SURNAME | NUMBER OF CONSULTATIONS`
-
-```java
-        Dataset<Row> dfConsultations = df1.groupBy(col("id_medecin")).count();
-        Dataset<Row> dfMedicins = df2.select("id","nom","prenom");
-
-        Dataset<Row> joinedDF = dfMedicins
-                .join(dfConsultations, dfMedicins.col("id").equalTo(dfConsultations.col("id_medecin")), "inner")
-                .select(dfMedicins.col("nom"), dfMedicins.col("prenom"),
-                 dfConsultations.col("count").alias("NOMBRE DE CONSULTATION"))
-                .orderBy(col("NOMBRE DE CONSULTATION").desc());
-
-        joinedDF.show();
+   df1.groupBy(col("DATE_CONSULTATION").alias("DATE de CONSULTATION")).count().show();
 ```
-
 ![image](https://github.com/el-moudni-hicham/bigdata-spark-sql/assets/85403056/a20eaf6d-cdaf-4864-a2e9-8122f7724aab)
 
