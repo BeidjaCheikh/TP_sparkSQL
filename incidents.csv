@@ -1,0 +1,9 @@
+Id,Titre,Description,Service,Date
+1,Panne de machine,La machine n'est plus en marche,Production,2023-11-17
+2,Incendie,Un incendie s'est déclaré dans l'entrepôt,Logistique,2020-11-18
+3,Fuite de produit,Une fuite de produit toxique s'est produite,Qualité,2020-11-19
+4,Nouvelle panne de machine,La machine est en panne à nouveau,Production,2023-11-20
+5,Nouvelle panne de machine 2,La machine est en panne encore une fois,Production,2023-11-21
+6,Nouvelle panne de machine 3,La machine ne fonctionne pas,Production,2022-11-22
+7,Problème de livraison,Retard dans la livraison des produits,Logistique,2023-11-23
+8,Contrôle de qualité,Problème de contrôle de qualité,Qualité,2023-11-24
