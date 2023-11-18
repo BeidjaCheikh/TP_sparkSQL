@@ -80,11 +80,11 @@ Dataset<Row> df1 = ss.read().option("header", true).option("inferSchema", true).
         incidentsByYearDFSorted.show(2);
 ```
 
-![image](https://github.com/el-moudni-hicham/bigdata-spark-sql/assets/85403056/80354378-c621-45ac-8f09-a12ea7eed294)
+![image](https://github.com/BeidjaCheikh/TP_sparkSQL/blob/master/images/img3.png)
 
 ### Hopital Database
 
-Create MySQL database named DB_HOPITAL, which contains three tables
+Créez une base de données MySQL nommée DB_HOPITAL, qui contient trois tables
 
 * PATIENTS :
 
