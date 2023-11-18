@@ -88,15 +88,15 @@ Créez une base de données MySQL nommée DB_HOPITAL, qui contient trois tables
 
 * PATIENTS :
 
-![image](https://github.com/el-moudni-hicham/bigdata-spark-sql/assets/85403056/12cd8ab1-d6d5-4f85-b1d7-5162608c6b83)
+![image](https://github.com/BeidjaCheikh/TP_sparkSQL/blob/master/images/img4.png)
 
 * MEDECINS :
 
-![image](https://github.com/el-moudni-hicham/bigdata-spark-sql/assets/85403056/23e115fb-f9ed-42a0-a1b8-5d6ce0fe332c)
+![image](https://github.com/BeidjaCheikh/TP_sparkSQL/blob/master/images/img5.png)
 
 * CONSULTATIONS :
 
-![image](https://github.com/el-moudni-hicham/bigdata-spark-sql/assets/85403056/3a488794-074a-4189-89bf-7969e8a8674b)
+![image](https://github.com/BeidjaCheikh/TP_sparkSQL/blob/master/images/img6.png)
 
 * Get access to data in database :
 
